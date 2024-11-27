@@ -75,12 +75,20 @@ app.post("/inscripcion", (req, res) => {
 
 //Creando la conexión con el banco de datos usando MySQL:
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'c_popular',
-    port: 3306
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT
 });
+
+//configurar express-session: creación de las sesiones de usuarios
+app.use(session({
+    secret: process.env.SECRET_KEY,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+}));
 
 //El extracto de arriba crea la conexión, pero no la establece. Para conectar al BD, hay que llamar la función "connect":
 db.connect((err) => {
@@ -92,13 +100,13 @@ db.connect((err) => {
 });
 
 
-app.listen(3000, () => {
+//Creamos el servidor:
+app.listen(process.env.PORT, (req, res) => {
     console.log("Servidor funcionando en la puerta 3000");
 });
 
 
 //Creación de la ruta de exibición de los corredores
-
 
 //ruta para exibir los datos del corredor que será editado
 app.get("/admin/edit/:id", (req, res) => {
@@ -146,14 +154,6 @@ app.get('/images/favicon.ico', (req, res) => {
     res.sendFile(path.join(__dirname, 'images', 'favicon.ico'));
 });
 
-
-//configurar express-session: creación de las sesiones de usuarios
-app.use(session({
-    secret: process.env.SECRET_KEY,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false }
-}));
 
 
 //Rota GET para exibir o formulário de login
