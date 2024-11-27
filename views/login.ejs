@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+    <%- include('partials/header') %>
+
+    <div id="container">
+        <div class="center">
+
+    <h1>Login de Administrador</h1>
+    <br>
+    <form action="/login" method="POST">
+        <label for="username">Nombre de usuario:</label>
+        <input type="text" name="username" required>
+        <br>
+
+        <label for="password">Contraseña</label>
+        <input type="password" name="password" required>
+        <br>
+        <br>
+        <button type="submit" class="enviar">Acceder</button>
+
+    </form>
+    </div>
+    </div>
+
+    <%- include('partials/footer') %>
+    
+</body>
+</html>

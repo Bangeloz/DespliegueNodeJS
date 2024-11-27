@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto práctico: página web para anunciar una carrera popular</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/styles.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <div id="container">
+        <div class="center">
+            <h1 class="h1_top">Carrera popular</h1>
+            <p>Bienvenidos a la carrera popular! 🏃🏃🏾🏃🏾‍♀️🏃🏼‍♀️🏁</p>
+            <br>
+            <p>A continuación, encontrarás toda la información necesária:</p>
+            <br>
+            <p>📅 <strong>Fecha:</strong> 28 de febrero de 2025</p>
+            <p>⏰ <strong>Horário:</strong> 9:00</p>
+            <p>📍 <strong>Local:</strong> Plaça d'Espanya, Barcelona</p>
+            <br>
+            <br>
+                <div id="cuenta-regresiva">
+                    <div id="cuenta_regresiva_texto">Cuenta atrás</div>
+                    <span id="contador"></span>
+                </div>
+            <br>
+            <p><a href="/inscripcion">➡️ Para inscripción, haga clic aquí!</a> 📝</p>
+        </div>
+
+        <div id="mapa"></div>
+
+        <p id="patrocinadores_texto">PATROCINADORES</p>
+        <br>
+        <div id="patrocinadores">
+            
+            <a href="https://www.patrocinador1.com" id="patrocinador1" target="_blank" aria-label="Patrocinador1">
+                <img src="/images/sponsor1.png" alt="Patrocinador 1" />
+            </a>
+            <a href="https://www.patrocinador2.com" id="patrocinador2" target="_blank" aria-label="Patrocinador2">
+                <img src="/images/sponsor2.png" alt="Patrocinador 2" />
+            </a>
+            <a href="https://www.patrocinador3.com" id="patrocinador3" target="_blank" aria-label="Patrocinador3">
+                <img src="/images/sponsor3.png" alt="Patrocinador 3" />
+            </a>
+        </div>
+    </div>
+
+    <%- include('partials/footer') %>
+
+    <script>
+        // Inicializa o mapa e define a posição inicial e o nível de zoom
+        var map = L.map('mapa').setView([41.3751948911155, 2.1500459266099226], 15);
+
+        // Adiciona camada do OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Adiciona marcador
+        var marker = L.marker([41.3751948911155, 2.1500459266099226]).addTo(map);
+        marker.bindPopup("<b>Seu Local!</b>").openPopup();
+    </script>
+
+<script src="/contador.js"></script>
+
+</body>
+</html>

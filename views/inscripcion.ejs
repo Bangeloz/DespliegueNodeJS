@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de inscripción</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+    <%- include('partials/header') %>
+
+    <div id="container">
+        <div class="center">
+            <h1 class="h1_top">Inscripción para la Carrera Popular</h1>
+            <form action="/inscripcion" method="POST">
+                <label>Nombre:</label>
+                <input type="text" class="inscripcion_texto" name="nombre" maxlength="100" required> <br>
+
+                <label>Apellido:</label>
+                <input type="text" class="inscripcion_texto" name="apellido" maxlength="100" required> <br>
+
+                <label>DNI:</label>
+                <input type="text" class="inscripcion_texto" name="dni" maxlength="20" required> <br>
+
+                <label>Teléfono:</label>
+                <input type="tel" class="inscripcion_texto" name="telefono" maxlength="20" required> <br>
+
+                <label>Dirección:</label>
+                <input type="text" class="inscripcion_texto" name="calle" placeholder=" Calle" maxlength="100" required> <br>
+                <input type="text" class="inscripcion_texto" name="numero" placeholder=" Número" maxlength="10"> <br>
+                <input type="text" class="inscripcion_texto" name="ciudad" placeholder=" Ciudad" maxlength="50" required> <br>
+                <input type="text" class="inscripcion_texto" name="codigopostal" placeholder=" Código Postal" maxlength="10" required> <br>
+                <br>
+                <button type="submit" class="enviar">  Enviar Inscripción 🏃🏼 </button>
+
+                <!--<p class="volver"><a href="/">◀️ Volver a la página inicial</a></p>-->
+                
+            </form>
+        </div>
+    </div>
+
+    <%- include('partials/footer') %>
+
+</body>
+</html>

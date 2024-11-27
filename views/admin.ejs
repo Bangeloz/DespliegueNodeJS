@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración de Corredores - 🏃🏼‍♀️🏃🏾‍♀️🏃🏾‍♂️🏃🏁</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <script>
+        function confirmDelete(){
+            return confirm("Estás seguro de que deseas eliminar este registro?");
+        }
+    </script>
+
+</head>
+<body>
+
+    <%- include('partials/header') %>
+
+    <div id="container">
+        <div class="center">
+            <h1 class="h1_top">Corredores Inscritos</h1>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th class="titulo">ID</th>
+                        <th class="titulo">Nombre</th>
+                        <th class="titulo">Apellido</th>
+                        <th class="titulo">DNI</th>
+                        <th class="titulo">Teléfono</th>
+                        <th class="titulo">Dirección</th>
+                        <th class="titulo">Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% corredores.forEach(corredor => { %>
+                        <tr>
+                            <td id="id"><%= corredor.id %></td>
+                            <td><%= corredor.nombre %></td>
+                            <td><%= corredor.apellido %></td>
+                            <td><%= corredor.dni %></td>
+                            <td><%= corredor.telefono %></td>
+                            <td><%= corredor.calle %> <%= corredor.numero %>, <%= corredor.ciudad %>, <%= corredor.codigopostal %></td>
+                            <td>
+                                <a href="/admin/edit/<%= corredor.id %>" class="direccion">
+                                    <button type="button">Editar</button></a>
+                                <form action="/admin/delete/<%= corredor.id %>" method="POST" onsubmit="return confirmDelete()" style="display:inline;">
+                                    <button type="submit" class="direccion">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+
+            </table>
+            
+            <br><br>
+            
+            <button type="submit" class="logout"><a href="/logout">⚠️ LOGOUT</a></button>
+     </div>
+    </div>
+
+    <%- include('partials/footer') %>
+
+</body>
+</html>                                              

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Corredor</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>Editar Corredor</h1>
+    <form action="/admin/edit/<%= corredor.id %>" method="POST">
+        <label>Nombre:</label>
+        <input type="text" name="nombre" value="<%=corredor.nombre %>" required> <br>
+
+        <label>Apellido:</label>
+        <input type="text" name="apellido" value="<%= corredor.apellido %>" required> <br>
+
+        <label>DNI:</label>
+        <input type="text" name="dni" value="<%=corredor.dni %>" required> <br>
+
+        <label>Teléfono:</label>
+        <input type="tel" name="telefono" value="<%= corredor.telefono %>" required> <br>
+
+        <label>Dirección:</label>
+        <input type="text" name="calle" value="<%= corredor.calle %>" placeholder="Calle"> <br>
+        <input type="text" name="numero" value="<%= corredor.numero %>" placeholder="Número"> <br>
+        <input type="text" name="ciudad" value="<%= corredor.ciudad %>" placeholder="Ciudad"> <br>
+        <input type="text" name="codigopostal" value="<%= corredor.codigopostal %>" placeholder="Código Postal"> <br>
+
+        <button type="submit">Guardar Cambios</button>
+
+    </form>
+</body>
+</html>
