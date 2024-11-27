@@ -6,8 +6,11 @@ const mysql = require("mysql");
 const ejs = require("ejs");
 const path = require("path");
 
-require('dotenv').config(); //cargar variables de entorno
-const session = require("express-session");
+if(process.env.NODE_ENV != "produccion"){
+    const dotenv = require('dotenv').config(); //cargar variables de entorno
+}
+
+const session = require("cookie-session");
 const bcryptjs = require('bcryptjs');
 
 
@@ -229,13 +232,9 @@ bcryptjs.hash("contrasena123", 10, (err, hashedPassword) => {
 
 //Ruta GET para el logout
 app.get("/logout", (req, res) => {
-    req.session.destroy((err) => {
-        if (err) {
-            return res.status(500).send("Error al salir");
-        }
+    req.session = null;
         res.redirect("/login");
     });
-});
 
 
 //Ruta GET para contacto:
