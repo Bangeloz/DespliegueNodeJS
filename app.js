@@ -87,10 +87,10 @@ const db = mysql.createConnection({
 
 //configurar express-session: creación de las sesiones de usuarios
 app.use(session({
-    secret: process.env.SECRET_KEY,
+    keys: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false }
+    cookie: { secure: process.env.NODE_ENV === "produccion" }
 }));
 
 //El extracto de arriba crea la conexión, pero no la establece. Para conectar al BD, hay que llamar la función "connect":
